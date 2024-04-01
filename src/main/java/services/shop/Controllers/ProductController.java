@@ -2,6 +2,7 @@ package services.shop.Controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import services.shop.Dtos.EntitiesDto.ProductDto;
@@ -20,7 +21,13 @@ public class ProductController {
 
     @GetMapping()
     public ResponseEntity<List<ProductDto>> getProducts(){
-        List<ProductDto> usuariosDto = _productService.getAllProducts();
-        return ResponseEntity.ok().body(usuariosDto);
+        List<ProductDto> ProductsDto = _productService.getAllProducts();
+        return ResponseEntity.ok().body(ProductsDto);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDto> getUsuarioById(@PathVariable("id") Long idProduct){
+        ProductDto productDto = _productService.getProductByID(idProduct);
+        return ResponseEntity.ok().body(productDto);
     }
 }

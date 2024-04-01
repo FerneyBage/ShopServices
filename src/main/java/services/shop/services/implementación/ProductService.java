@@ -25,4 +25,9 @@ public class ProductService implements IProductService {
         return _productMapper.productsToProductDTOs(products);
     }
 
+    public ProductDto getProductByID(long id){
+        Product product = _productRepository.getReferenceById(id);
+        return _productMapper.productToProductDTO(product);
+    }
+
 }
