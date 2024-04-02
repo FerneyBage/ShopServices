@@ -2,7 +2,8 @@ package services.shop.services.implementación;
 
 
 import org.springframework.stereotype.Service;
-import services.shop.Dtos.EntitiesDto.ProductDto;
+import services.shop.Dtos.EntitiesDto.ProductsDto.NewProductDto;
+import services.shop.Dtos.EntitiesDto.ProductsDto.ProductDto;
 import services.shop.Dtos.MapperDto.IProductMapper;
 import services.shop.entities.Product;
 import services.shop.repositories.IProductRepository;
@@ -29,5 +30,35 @@ public class ProductService implements IProductService {
         Product product = _productRepository.getReferenceById(id);
         return _productMapper.productToProductDTO(product);
     }
+
+    public List<ProductDto> getProductInstock(){
+        List<Product> products = _productRepository.findProductsInStock();
+        return _productMapper.productsToProductDTOs(products);
+    }
+
+    public ProductDto addProduct(NewProductDto newProductDto){
+        Product newproduct = _productMapper.NewproductToProduct(newProductDto);
+        var ProductCreated = _productRepository.save(newproduct);
+        return  _productMapper.productToProductDTO(ProductCreated);
+    }
+
+    public List<ProductDto> getproductForName(String name){
+        List<Product> products = _productRepository.findByName(name);
+        return _productMapper.productsToProductDTOs(products);
+    }
+
+    /*  public ProductDto putProduct(long id, NewProductDto productDto){
+      Product product = _productRepository.getReferenceById(id);
+        if(product == null){
+            return ;
+        }
+
+
+        Product newproduct = _productMapper.NewproductToProduct(productDto);
+        newproduct.setId(id);
+        Product I = _productRepository.
+
+    }
+    */
 
 }

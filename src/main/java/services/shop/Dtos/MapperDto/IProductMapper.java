@@ -1,8 +1,8 @@
 package services.shop.Dtos.MapperDto;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
-import services.shop.Dtos.EntitiesDto.ProductDto;
+import services.shop.Dtos.EntitiesDto.ProductsDto.NewProductDto;
+import services.shop.Dtos.EntitiesDto.ProductsDto.ProductDto;
 import services.shop.entities.Product;
 
 import java.util.List;
@@ -11,4 +11,6 @@ import java.util.List;
 public interface IProductMapper {
     ProductDto productToProductDTO(Product product);
     List<ProductDto> productsToProductDTOs(List<Product> products);
+
+    Product NewproductToProduct(NewProductDto product);
 }

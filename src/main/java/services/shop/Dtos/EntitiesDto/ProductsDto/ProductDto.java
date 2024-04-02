@@ -1,4 +1,4 @@
-package services.shop.Dtos.EntitiesDto;
+package services.shop.Dtos.EntitiesDto.ProductsDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
