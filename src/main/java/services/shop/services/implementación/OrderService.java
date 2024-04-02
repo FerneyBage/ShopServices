@@ -2,8 +2,9 @@ package services.shop.services.implementación;
 
 import services.shop.Dtos.MapperDto.IOrderMapper;
 import services.shop.repositories.IOrderRepository;
+import services.shop.services.contract.IOrderService;
 
-public class OrderService {
+public class OrderService implements IOrderService {
     private IOrderRepository _orderRepository;
     private IOrderMapper _OrderMapper;
 
@@ -12,6 +13,8 @@ public class OrderService {
         _OrderMapper = orderMapper;
     }
 
-
+    public String Getall(){
+        return "hola";
+    }
 
 }

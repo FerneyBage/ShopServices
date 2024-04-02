@@ -24,7 +24,10 @@ public class Order {
     private Customer customer;
 
     private Date orderDate;
-    private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
