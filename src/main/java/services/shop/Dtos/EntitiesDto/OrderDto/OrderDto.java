@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import services.shop.Dtos.EntitiesDto.CustomersDto.CustomerDto;
 import services.shop.entities.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class OrderDto {
     private Long id;
     private CustomerDto customer;
-    private Date orderDate;
+    private LocalDateTime orderDate;
     private Status status;
     private List<OrderItem> orderItems;
     private Payment payment;

@@ -6,11 +6,12 @@ import services.shop.entities.Order;
 import org.springframework.data.jpa.repository.Query;
 import services.shop.entities.Status;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 public interface    IOrderRepository extends JpaRepository<Order, Long> {
-    List<Order> findByOrderDateBetween(Date startDate, Date endDate);
+    List<Order> findByOrderDateBetween(LocalDateTime startDate, LocalDateTime endDate);
     List<Order> findByCustomerId(Long customerId);
     List<Order> findByCustomerAndStatus(Customer customer, Status status);
     @Query("SELECT o FROM Order o JOIN FETCH o.orderItems WHERE o.customer = ?1")

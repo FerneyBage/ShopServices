@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -23,6 +25,6 @@ public class Payment {
     private Order order;
 
     private double totalPayment;
-    private Date paymentDate;
+    private LocalDateTime paymentDate;
     private String paymentMethod;
 }
