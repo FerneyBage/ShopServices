@@ -1,14 +1,11 @@
-package services.shop.services.implementación;
+package services.shop.services.implementation;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import services.shop.Dtos.EntitiesDto.ProductsDto.ProductDto;
 import services.shop.Dtos.MapperDto.IProductMapper;
 import services.shop.Dtos.MapperDto.IProductMapperImpl;
 import services.shop.repositories.IProductRepository;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ProductServiceTest {
 
