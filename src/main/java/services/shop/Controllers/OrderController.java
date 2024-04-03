@@ -2,10 +2,8 @@ package services.shop.Controllers;
 
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import services.shop.Dtos.EntitiesDto.OrderDto.NewOrderDto;
 import services.shop.Dtos.EntitiesDto.OrderDto.OrderDto;
 import services.shop.Dtos.EntitiesDto.ProductsDto.ProductDto;
 import services.shop.services.contract.IOrderService;
@@ -35,6 +33,12 @@ public class OrderController {
     @GetMapping("/customer/{customerId} ")
     public ResponseEntity<List<OrderDto>> getAllOrders(@PathVariable("customerId") Long customerId){
         var OrdersDto = _orderService.getOrderByCustomer(customerId);
+        return ResponseEntity.ok().body(OrdersDto);
+    }
+
+    @PostMapping()
+    public ResponseEntity<OrderDto> PostOrder(@RequestBody NewOrderDto newOrderDto){
+        var OrdersDto = _orderService.AddOrder(newOrderDto);
         return ResponseEntity.ok().body(OrdersDto);
     }
 }
