@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Date;
 
 public interface IPaymentRepository extends JpaRepository<Payment, Long> {
+    List<Payment> findByOrderId(Long orderId);
     List<Payment> findByPaymentDateBetween(LocalDateTime startDate, LocalDateTime endDate);
     List<Payment> findByOrderIdAndPaymentMethod(Long orderId, String paymentMethod);
 }

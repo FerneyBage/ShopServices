@@ -3,12 +3,9 @@ package services.shop.services.implementation;
 import org.springframework.stereotype.Service;
 import services.shop.Dtos.EntitiesDto.CustomersDto.CustomerDto;
 import services.shop.Dtos.EntitiesDto.CustomersDto.NewCustomerDto;
-import services.shop.Dtos.EntitiesDto.ProductsDto.ProductDto;
 import services.shop.Dtos.MapperDto.ICustomerMapper;
 import services.shop.Exceptions.CustomerNotFoundException;
-import services.shop.Exceptions.ProductNotFoundException;
 import services.shop.entities.Customer;
-import services.shop.entities.Product;
 import services.shop.repositories.ICustomerRepository;
 import services.shop.services.contract.ICustomerService;
 

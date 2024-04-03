@@ -68,11 +68,11 @@ public class OrderService implements IOrderService {
 
         return _orderMapper.OrderToOrderDTO(orderCreated);
     }
-    public List<OrderDto> getOrdersByDate(LocalDateTime StarDate, LocalDateTime EndDate){
-        List<Order> orders = _orderRepository.findByOrderDateBetween(StarDate,EndDate);
+    public List<OrderDto> getOrdersByDate(LocalDateTime StartDate, LocalDateTime EndDate){
+        List<Order> orders = _orderRepository.findByOrderDateBetween(StartDate,EndDate);
         return _orderMapper.OrdersToOrderDtoDTOs(orders);
     }
-    public  OrderDto updateOrder(Long Id, NewOrderDto newOrderDto){
+    public  OrderDto updateOrder(Long Id, NewOrderDto newOrderDto) throws OrderNotFoundException, CustomerNotFoundException, StatusNotFoundException{
         Order orderToUpdate = _orderRepository.findById(Id)
                 .orElseThrow(()-> new OrderNotFoundException("Order not found"));
         Customer customer = _customerRepository.findById(newOrderDto.getCustomerId())

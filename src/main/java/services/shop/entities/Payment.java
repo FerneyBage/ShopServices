@@ -19,11 +19,9 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @OneToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
-
     private double totalPayment;
     private LocalDateTime paymentDate;
     private String paymentMethod;
