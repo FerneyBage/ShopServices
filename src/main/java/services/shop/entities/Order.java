@@ -20,13 +20,13 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
     private Date orderDate;
 
     @ManyToOne
-    @JoinColumn(name = "status_id")
+    @JoinColumn(name = "status_id", referencedColumnName = "id")
     private Status status;
 
     @OneToMany(mappedBy = "order")
