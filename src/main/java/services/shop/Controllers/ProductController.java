@@ -24,7 +24,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getUsuarioById(@PathVariable("id") Long idProduct){
+    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long idProduct){
         ProductDto productDto = _productService.getProductByID(idProduct);
         return ResponseEntity.ok().body(productDto);
     }
@@ -41,7 +41,7 @@ public class ProductController {
         return ResponseEntity.ok().body(ProductCreatedDto);
     }
     @GetMapping("/search")
-    public ResponseEntity<List<ProductDto>> getUsuarioById(@RequestParam("searchTerm") String name){
+    public ResponseEntity<List<ProductDto>> getProductBySearch(@RequestParam("searchTerm") String name){
         List<ProductDto> productDto = _productService.getproductForName(name);
         return ResponseEntity.ok().body(productDto);
     }
