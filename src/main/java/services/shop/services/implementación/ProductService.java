@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import services.shop.Dtos.EntitiesDto.ProductsDto.NewProductDto;
 import services.shop.Dtos.EntitiesDto.ProductsDto.ProductDto;
 import services.shop.Dtos.MapperDto.IProductMapper;
-import services.shop.Exceptions.OrderNotFoundException;
 import services.shop.Exceptions.ProductNotFoundException;
 import services.shop.entities.Product;
 import services.shop.repositories.IProductRepository;
@@ -55,6 +54,13 @@ public class ProductService implements IProductService {
         _productMapper.updateProductFromDto(productDto, product);
         Product updatedProduct = _productRepository.save(product);
         return _productMapper.productToProductDTO(updatedProduct);
+    }
+
+    public ProductDto deleteProduct(long id){
+        Product productToDelete = _productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
+        _productRepository.delete(productToDelete);
+        return _productMapper.productToProductDTO(productToDelete);
     }
 
 }

@@ -12,4 +12,5 @@ public interface IProductService {
     public ProductDto addProduct(NewProductDto newProductDto);
     public List<ProductDto> getProductForName(String name);
     ProductDto updateProduct(long id, NewProductDto productDto);
+    ProductDto deleteProduct(long id);
 }

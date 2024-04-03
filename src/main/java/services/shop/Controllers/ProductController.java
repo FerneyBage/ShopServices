@@ -50,4 +50,9 @@ public class ProductController {
         ProductDto productDto = _productService.updateProduct(idProduct, newProductDto);
         return ResponseEntity.ok().body(productDto);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ProductDto> putProduct(@PathVariable("id") Long idProduct){
+        ProductDto productDto = _productService.deleteProduct(idProduct);
+        return ResponseEntity.ok().body(productDto);
+    }
 }
