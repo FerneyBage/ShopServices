@@ -9,6 +9,7 @@ import services.shop.repositories.IOrderRepository;
 import services.shop.repositories.IStatusRepository;
 import services.shop.services.contract.IOrderService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,6 +27,16 @@ public class OrderService implements IOrderService {
     public OrderDto getOrderById(long Id) throws OrderNotFoundException{
         Order order = _orderRepository.findById(Id).orElseThrow(()-> new OrderNotFoundException("Order not found"));
         return _orderMapper.OrderToOrderDTO(order);
+    }
+
+    public List<OrderDto> getAllOder(){
+        List<Order> Orders = _orderRepository.findAll();
+        return _orderMapper.OrdersToOrderDtoDTOs(Orders);
+    }
+
+    public List<OrderDto> getOrderByCustomer(Long customerId){
+        List<Order> Orders = _orderRepository.findByCustomerId(customerId);
+        return _orderMapper.OrdersToOrderDtoDTOs(Orders);
     }
 
 }
