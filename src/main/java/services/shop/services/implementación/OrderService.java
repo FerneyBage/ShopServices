@@ -47,8 +47,8 @@ public class OrderService implements IOrderService {
         List<Order> Orders = _orderRepository.findAll();
         return _orderMapper.OrdersToOrderDtoDTOs(Orders);
     }
-    public List<OrderDto> getOrderByCustomer(Long costomerId){
-        List<Order> Orders = _orderRepository.findByCustomerId(costomerId);
+    public List<OrderDto> getOrderByCustomer(Long customerId){
+        List<Order> Orders = _orderRepository.findByCustomerId(customerId);
         return _orderMapper.OrdersToOrderDtoDTOs(Orders);
     }
     public OrderDto AddOrder(NewOrderDto newOrderDto){

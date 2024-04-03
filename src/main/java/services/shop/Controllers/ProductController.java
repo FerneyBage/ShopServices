@@ -31,7 +31,7 @@ public class ProductController {
 
     @GetMapping("/instock")
     public ResponseEntity<List<ProductDto>> getProductInstock( String cityName){
-        List<ProductDto> ProductsDto = _productService.getProductInstock();
+        List<ProductDto> ProductsDto = _productService.getProductstack();
         return ResponseEntity.ok().body(ProductsDto);
 
     }
@@ -42,13 +42,12 @@ public class ProductController {
     }
     @GetMapping("/search")
     public ResponseEntity<List<ProductDto>> getProductBySearch(@RequestParam("searchTerm") String name){
-        List<ProductDto> productDto = _productService.getproductForName(name);
+        List<ProductDto> productDto = _productService.getProductForName(name);
         return ResponseEntity.ok().body(productDto);
     }
-
-  /*  @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getUsuarioById(@PathVariable("id") Long idProduct, @RequestBody ProductDto productDto){
-        ProductDto productDto = _productService.getProductByID(idProduct);
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDto> putProduct(@PathVariable("id") Long idProduct, @RequestBody NewProductDto newProductDto){
+        ProductDto productDto = _productService.updateProduct(idProduct, newProductDto);
         return ResponseEntity.ok().body(productDto);
-    }*/
+    }
 }

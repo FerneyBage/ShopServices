@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import services.shop.Dtos.EntitiesDto.ProductsDto.NewProductDto;
 import services.shop.Dtos.EntitiesDto.ProductsDto.ProductDto;
 import services.shop.Dtos.MapperDto.IProductMapper;
+import services.shop.Exceptions.OrderNotFoundException;
+import services.shop.Exceptions.ProductNotFoundException;
 import services.shop.entities.Product;
 import services.shop.repositories.IProductRepository;
 import services.shop.services.contract.IProductService;
@@ -31,7 +33,7 @@ public class ProductService implements IProductService {
         return _productMapper.productToProductDTO(product);
     }
 
-    public List<ProductDto> getProductInstock(){
+    public List<ProductDto> getProductstack(){
         List<Product> products = _productRepository.findProductsInStock();
         return _productMapper.productsToProductDTOs(products);
     }
@@ -42,23 +44,17 @@ public class ProductService implements IProductService {
         return  _productMapper.productToProductDTO(ProductCreated);
     }
 
-    public List<ProductDto> getproductForName(String name){
+    public List<ProductDto> getProductForName(String name){
         List<Product> products = _productRepository.findByName(name);
         return _productMapper.productsToProductDTOs(products);
     }
 
-    /*  public ProductDto putProduct(long id, NewProductDto productDto){
-      Product product = _productRepository.getReferenceById(id);
-        if(product == null){
-            return ;
-        }
-
-
-        Product newproduct = _productMapper.NewproductToProduct(productDto);
-        newproduct.setId(id);
-        Product I = _productRepository.
-
+    public ProductDto updateProduct(long id, NewProductDto productDto) {
+        Product product = _productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
+        _productMapper.updateProductFromDto(productDto, product);
+        Product updatedProduct = _productRepository.save(product);
+        return _productMapper.productToProductDTO(updatedProduct);
     }
-    */
 
 }

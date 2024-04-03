@@ -2,6 +2,7 @@ package services.shop.Dtos.MapperDto;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import services.shop.Dtos.EntitiesDto.ProductsDto.NewProductDto;
 import services.shop.Dtos.EntitiesDto.ProductsDto.ProductDto;
 import services.shop.entities.Product;
@@ -14,4 +15,6 @@ public interface IProductMapper {
     List<ProductDto> productsToProductDTOs(List<Product> products);
     @Mapping(target = "id", ignore = true)
     Product NewproductToProduct(NewProductDto product);
+    @Mapping(target = "id", ignore = true)
+    void updateProductFromDto(NewProductDto dto, @MappingTarget Product product);
 }
