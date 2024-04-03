@@ -3,6 +3,7 @@ package services.shop.services.implementación;
 import org.springframework.stereotype.Service;
 import services.shop.Dtos.EntitiesDto.OrderDto.NewOrderDto;
 import services.shop.Dtos.EntitiesDto.OrderDto.OrderDto;
+import services.shop.Dtos.EntitiesDto.StatusDto.StatusDto;
 import services.shop.Dtos.MapperDto.IOrderMapper;
 import services.shop.Exceptions.CustomerNotFoundException;
 import services.shop.Exceptions.OrderNotFoundException;
@@ -24,7 +25,6 @@ import java.util.Optional;
 public class OrderService implements IOrderService {
     private IOrderRepository _orderRepository;
     private IStatusRepository _statusRepository;
-
     private ICustomerRepository _customerRepository;
     private IOrderMapper _orderMapper;
 
@@ -35,22 +35,22 @@ public class OrderService implements IOrderService {
         _customerRepository = customerRepository;
         _orderMapper = orderMapper;
     }
-
+    public List<StatusDto> getAllStatuses(){
+        List<Status> Statuses = _statusRepository.findAll();
+        return _orderMapper.StatusesToStatusDtos(Statuses);
+    }
     public OrderDto getOrderById(long Id) throws OrderNotFoundException{
         Order order = _orderRepository.findById(Id).orElseThrow(()-> new OrderNotFoundException("Order not found"));
         return _orderMapper.OrderToOrderDTO(order);
     }
-
     public List<OrderDto> getAllOder(){
         List<Order> Orders = _orderRepository.findAll();
         return _orderMapper.OrdersToOrderDtoDTOs(Orders);
     }
-
     public List<OrderDto> getOrderByCustomer(Long costomerId){
         List<Order> Orders = _orderRepository.findByCustomerId(costomerId);
         return _orderMapper.OrdersToOrderDtoDTOs(Orders);
     }
-
     public OrderDto AddOrder(NewOrderDto newOrderDto){
         Customer customer = _customerRepository.findById(newOrderDto.getCustomerId())
                             .orElseThrow(()-> new CustomerNotFoundException("Customer not found"));
@@ -64,5 +64,6 @@ public class OrderService implements IOrderService {
 
         return _orderMapper.OrderToOrderDTO(orderCreaded);
     }
+
 
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import services.shop.Dtos.EntitiesDto.OrderDto.NewOrderDto;
 import services.shop.Dtos.EntitiesDto.OrderDto.OrderDto;
 import services.shop.Dtos.EntitiesDto.ProductsDto.ProductDto;
+import services.shop.Dtos.EntitiesDto.StatusDto.StatusDto;
 import services.shop.services.contract.IOrderService;
 
 import java.util.List;
@@ -18,6 +19,11 @@ public class OrderController {
         _orderService = orderService;
     }
 
+    @GetMapping("/statuses")
+    public ResponseEntity<List<StatusDto>> getALlStatuses(){
+        List<StatusDto> StatusDtos = _orderService.getAllStatuses();
+        return ResponseEntity.ok().body(StatusDtos);
+    }
     @GetMapping("/{id}")
     public ResponseEntity<OrderDto> getOrderById(@PathVariable("id") Long idOrder){
         OrderDto OrderDto = _orderService.getOrderById(idOrder);
