@@ -40,14 +40,14 @@ public class CustomerService implements ICustomerService {
         List<Customer> customers =_customerRepository.findByAddress(city);
         return  _customerMapper.CustomersToCustomersDto(customers);
     }
-    public CustomerDto updateCustomer(long id, NewCustomerDto productDto) {
+    public CustomerDto updateCustomer(long id, NewCustomerDto productDto) throws CustomerNotFoundException {
         Customer customer = _customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerNotFoundException("Customer not found with id: " + id));
         _customerMapper.updateCustomerFromDto(productDto, customer);
         Customer updatedCustomer = _customerRepository.save(customer);
         return _customerMapper.CustomerToCostumerDto(updatedCustomer);
     }
-    public CustomerDto deleteCustomer(long id){
+    public CustomerDto deleteCustomer(long id) throws CustomerNotFoundException{
         Customer CustomerToDelete = _customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerNotFoundException("Customer not found with id: " + id));
         _customerRepository.delete(CustomerToDelete);
